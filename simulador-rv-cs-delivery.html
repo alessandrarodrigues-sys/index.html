@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Simulador Remuneração Variável CS | Delivery</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(135deg,#0f2a44,#1f6f8b);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0;
+}
+
+.container{
+background:white;
+width:430px;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.logo{
+width:180px;
+margin-bottom:15px;
+}
+
+h1{
+font-size:20px;
+color:#0f2a44;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+text-align:left;
+font-size:14px;
+margin-top:10px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:5px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+button{
+flex:1;
+padding:12px;
+font-size:15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.simular{
+background:#00a859;
+color:white;
+}
+
+.simular:hover{
+background:#008c4a;
+}
+
+.limpar{
+background:#e4e4e4;
+}
+
+.resultado{
+margin-top:25px;
+background:#f4f7fb;
+padding:15px;
+border-radius:8px;
+text-align:left;
+}
+
+.valor{
+font-size:22px;
+font-weight:bold;
+color:#0f2a44;
+margin-top:10px;
+}
+
+.regra{
+margin-top:10px;
+font-size:13px;
+color:#555;
+}
+
+.barra{
+height:10px;
+background:#e4e4e4;
+border-radius:10px;
+margin-top:10px;
+}
+
+.progresso{
+height:10px;
+background:#00a859;
+border-radius:10px;
+width:0%;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img class="logo" src="logo-sankhya.png.png">
+
+<h1>Simulador Remuneração Variável<br>CS | Delivery</h1>
+
+<label>Salário Mensal (R$)</label>
+<input type="number" id="salario">
+
+<label>% Atingimento Indicador Principal</label>
+<input type="number" id="principal">
+
+<label>% Atingimento Indicador Secundário</label>
+<input type="number" id="secundario">
+
+<div class="buttons">
+<button class="simular" onclick="calcular()">Simular</button>
+<button class="limpar" onclick="limpar()">Limpar</button>
+</div>
+
+<div class="resultado" id="resultado" style="display:none">
+
+<div id="detalhes"></div>
+
+<div class="barra">
+<div class="progresso" id="barra"></div>
+</div>
+
+<div class="valor" id="valor"></div>
+
+<div class="regra" id="regra"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let salario = parseFloat(document.getElementById("salario").value);
+let principal = parseFloat(document.getElementById("principal").value);
+let secundario = parseFloat(document.getElementById("secundario").value);
+
+let percPrincipal = 0;
+let percSecundario = 0;
+let regra = "";
+
+if(principal < 100){
+
+percPrincipal = 0;
+percSecundario = 0;
+
+regra = "O indicador principal não atingiu 100%. Conforme regra do programa, não há pagamento de remuneração variável.";
+
+}
+
+else{
+
+percPrincipal = 10;
+
+if(secundario < 70){
+
+percSecundario = 0;
+
+regra = "O indicador principal foi atingido, garantindo o pagamento de 10%. Como o indicador secundário não atingiu o mínimo de 70%, não houve pagamento adicional.";
+
+}
+
+else if(secundario < 90){
+
+percSecundario = 5;
+regra = "O indicador principal foi atingido e o indicador secundário contribuiu para o pagamento adicional.";
+
+}
+
+else if(secundario < 100){
+
+percSecundario = 10;
+regra = "O indicador principal foi atingido e o indicador secundário contribuiu para o pagamento adicional.";
+
+}
+
+else if(secundario < 110){
+
+percSecundario = 15;
+regra = "O indicador principal foi atingido e o indicador secundário contribuiu para o pagamento adicional.";
+
+}
+
+else if(secundario < 120){
+
+percSecundario = 20;
+regra = "O indicador principal foi atingido e o indicador secundário contribuiu para o pagamento adicional.";
+
+}
+
+else{
+
+percSecundario = 27.5;
+regra = "O indicador principal foi atingido e o indicador secundário contribuiu para o pagamento adicional.";
+
+}
+
+}
+
+let total = percPrincipal + percSecundario;
+
+if(total > 37.5){
+total = 37.5;
+}
+
+let valorTri = salario * (total/100);
+
+document.getElementById("resultado").style.display="block";
+
+document.getElementById("detalhes").innerHTML = `
+Principal: <b>${percPrincipal}%</b><br>
+Secundário: <b>${percSecundario}%</b><br>
+Percentual Total no Trimestre: <b>${total}%</b>
+`;
+
+document.getElementById("valor").innerHTML =
+"RV no Trimestre: R$ " + valorTri.toLocaleString('pt-BR',{minimumFractionDigits:2});
+
+document.getElementById("regra").innerHTML = regra;
+
+document.getElementById("barra").style.width = (total/37.5)*100 + "%";
+
+}
+
+function limpar(){
+
+document.getElementById("salario").value="";
+document.getElementById("principal").value="";
+document.getElementById("secundario").value="";
+document.getElementById("resultado").style.display="none";
+document.getElementById("barra").style.width="0%";
+
+}
+
+</script>
+
+</body>
+</html>
