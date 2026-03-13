@@ -115,6 +115,35 @@ border-radius:10px;
 width:0%;
 }
 
+/* TABELA */
+
+.tabela{
+margin-top:20px;
+font-size:12px;
+text-align:left;
+}
+
+.tabela table{
+width:100%;
+border-collapse:collapse;
+margin-top:8px;
+}
+
+.tabela th{
+background:#0f2a44;
+color:white;
+padding:6px;
+}
+
+.tabela td{
+border:1px solid #ddd;
+padding:6px;
+}
+
+.tabela tr:nth-child(even){
+background:#f4f7fb;
+}
+
 </style>
 </head>
 
@@ -151,6 +180,65 @@ width:0%;
 <div class="valor" id="valor"></div>
 
 <div class="regra" id="regra"></div>
+
+</div>
+
+<div class="tabela">
+
+<b>Regras de Pagamento</b>
+
+<table>
+
+<tr>
+<th>Indicador</th>
+<th>Atingimento</th>
+<th>Pagamento</th>
+</tr>
+
+<tr>
+<td>Principal</td>
+<td>Menor que 100%</td>
+<td>0%</td>
+</tr>
+
+<tr>
+<td>Principal</td>
+<td>Maior ou igual a 100%</td>
+<td>10%</td>
+</tr>
+
+<tr>
+<td rowspan="6">Secundário</td>
+<td>Menor que 70%</td>
+<td>0%</td>
+</tr>
+
+<tr>
+<td>70% a 89%</td>
+<td>5%</td>
+</tr>
+
+<tr>
+<td>90% a 99%</td>
+<td>10%</td>
+</tr>
+
+<tr>
+<td>100% a 109%</td>
+<td>15%</td>
+</tr>
+
+<tr>
+<td>110% a 119%</td>
+<td>20%</td>
+</tr>
+
+<tr>
+<td>120% ou mais</td>
+<td>27,5%</td>
+</tr>
+
+</table>
 
 </div>
 
