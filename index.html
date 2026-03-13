@@ -5,141 +5,114 @@
 <title>Simulador Remuneração Variável CS | Delivery</title>
 
 <style>
+
 body{
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg,#0f2a44,#1f6f8b);
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0;
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(135deg,#0f2a44,#1f6f8b);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0;
 }
 
 .container{
-  background:white;
-  width:430px;
-  padding:35px;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  text-align:center;
+background:white;
+width:430px;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+text-align:center;
 }
 
 .logo{
-  width:180px;
-  margin-bottom:15px;
+width:180px;
+margin-bottom:15px;
 }
 
 h1{
-  font-size:20px;
-  color:#0f2a44;
-  margin-bottom:20px;
+font-size:20px;
+color:#0f2a44;
+margin-bottom:20px;
 }
 
 label{
-  display:block;
-  text-align:left;
-  font-size:14px;
-  margin-top:10px;
+display:block;
+text-align:left;
+font-size:14px;
+margin-top:10px;
 }
 
 input{
-  width:100%;
-  padding:10px;
-  margin-top:5px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  font-size:15px;
+width:100%;
+padding:10px;
+margin-top:5px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:15px;
 }
 
 .buttons{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
+display:flex;
+gap:10px;
+margin-top:20px;
 }
 
 button{
-  flex:1;
-  padding:12px;
-  font-size:15px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
+flex:1;
+padding:12px;
+font-size:15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
 }
 
 .simular{
-  background:#00a859;
-  color:white;
+background:#00a859;
+color:white;
 }
 
 .simular:hover{
-  background:#008c4a;
+background:#008c4a;
 }
 
 .limpar{
-  background:#e4e4e4;
+background:#e4e4e4;
 }
 
 .resultado{
-  margin-top:25px;
-  background:#f4f7fb;
-  padding:15px;
-  border-radius:8px;
-  text-align:left;
+margin-top:25px;
+background:#f4f7fb;
+padding:15px;
+border-radius:8px;
+text-align:left;
 }
 
 .valor{
-  font-size:22px;
-  font-weight:bold;
-  color:#0f2a44;
-  margin-top:10px;
+font-size:22px;
+font-weight:bold;
+color:#0f2a44;
+margin-top:10px;
 }
 
 .regra{
-  margin-top:10px;
-  font-size:13px;
-  color:#555;
+margin-top:10px;
+font-size:13px;
+color:#555;
 }
 
 .barra{
-  height:10px;
-  background:#e4e4e4;
-  border-radius:10px;
-  margin-top:10px;
+height:10px;
+background:#e4e4e4;
+border-radius:10px;
+margin-top:10px;
 }
 
 .progresso{
-  height:10px;
-  background:#00a859;
-  border-radius:10px;
-  width:0%;
-}
-
-/* TABELA */
-.tabela{
-  margin-top:20px;
-  font-size:12px;
-  text-align:left;
-}
-
-.tabela table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:8px;
-}
-
-.tabela th{
-  background:#0f2a44;
-  color:white;
-  padding:6px;
-}
-
-.tabela td{
-  border:1px solid #ddd;
-  padding:6px;
-}
-
-.tabela tr:nth-child(even){
-  background:#f4f7fb;
+height:10px;
+background:#00a859;
+border-radius:10px;
+width:0%;
 }
 
 </style>
@@ -149,8 +122,7 @@ button{
 
 <div class="container">
 
-<!-- Corrigi o src do logo -->
-<img class="logo" src="logo-sankhya.png" alt="Logo Sankhya">
+<img class="logo" src="logo-sankhya.png.png">
 
 <h1>Simulador Remuneração Variável<br>CS | Delivery</h1>
 
@@ -164,79 +136,21 @@ button{
 <input type="number" id="secundario">
 
 <div class="buttons">
-  <button class="simular" onclick="calcular()">Simular</button>
-  <button class="limpar" onclick="limpar()">Limpar</button>
+<button class="simular" onclick="calcular()">Simular</button>
+<button class="limpar" onclick="limpar()">Limpar</button>
 </div>
 
 <div class="resultado" id="resultado" style="display:none">
 
-  <div id="detalhes"></div>
+<div id="detalhes"></div>
 
-  <div class="barra">
-    <div class="progresso" id="barra"></div>
-  </div>
-
-  <div class="valor" id="valor"></div>
-
-  <div class="regra" id="regra"></div>
-
+<div class="barra">
+<div class="progresso" id="barra"></div>
 </div>
 
-<div class="tabela">
+<div class="valor" id="valor"></div>
 
-<b>Regras de Pagamento</b>
-
-<table>
-<tr>
-<th>Indicador</th>
-<th>Atingimento</th>
-<th>Pagamento</th>
-</tr>
-
-<tr>
-<td>Principal</td>
-<td>Menor que 100%</td>
-<td>0%</td>
-</tr>
-
-<tr>
-<td>Principal</td>
-<td>Maior ou igual a 100%</td>
-<td>10%</td>
-</tr>
-
-<tr>
-<td rowspan="6">Secundário</td>
-<td>Menor que 70%</td>
-<td>0%</td>
-</tr>
-
-<tr>
-<td>70% a 89%</td>
-<td>5%</td>
-</tr>
-
-<tr>
-<td>90% a 99%</td>
-<td>10%</td>
-</tr>
-
-<tr>
-<td>100% a 109%</td>
-<td>15%</td>
-</tr>
-
-<tr>
-<td>110% a 119%</td>
-<td>20%</td>
-</tr>
-
-<tr>
-<td>120% ou mais</td>
-<td>27,5%</td>
-</tr>
-
-</table>
+<div class="regra" id="regra"></div>
 
 </div>
 
